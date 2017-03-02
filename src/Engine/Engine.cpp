@@ -198,6 +198,8 @@ void compareLines(diff_info& blockDiff1, diff_info& blockDiff2, const chunk_info
 			std::swap(pLine1, pLine2);
 		}
 
+		::MessageBox(nppData._nppHandle, TEXT("Checkpoint 3"), TEXT("Compare Plugin"), MB_OK);
+
 		// Compare the two lines
 		const std::vector<diff_info> lineDiff = DiffCalc<Word>(*pWords1, *pWords2)();
 
@@ -205,6 +207,8 @@ void compareLines(diff_info& blockDiff1, diff_info& blockDiff2, const chunk_info
 
 		if (lineDiffSize == 0)
 			continue;
+
+		::MessageBox(nppData._nppHandle, TEXT("Checkpoint 4"), TEXT("Compare Plugin"), MB_OK);
 
 		pBlockDiff1->changedLines.emplace_back(*pLine1);
 		pBlockDiff2->changedLines.emplace_back(*pLine2);
@@ -397,12 +401,10 @@ bool compareBlocks(const DocCmpInfo& doc1, const DocCmpInfo& doc2, const UserSet
 	getWords(view1, settings, chunk1);
 	getWords(view2, settings, chunk2);
 
-	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 3"), TEXT("Compare Plugin"), MB_OK);
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 1"), TEXT("Compare Plugin"), MB_OK);
 
 	// Compare the two chunks
 	const std::vector<diff_info> chunkDiff = DiffCalc<Word>(chunk1.words, chunk2.words)();
-
-	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 4"), TEXT("Compare Plugin"), MB_OK);
 
 	const int chunkDiffSize = static_cast<int>(chunkDiff.size());
 
@@ -477,7 +479,7 @@ bool compareBlocks(const DocCmpInfo& doc1, const DocCmpInfo& doc2, const UserSet
 		}
 	}
 
-	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 5"), TEXT("Compare Plugin"), MB_OK);
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 2"), TEXT("Compare Plugin"), MB_OK);
 
 	compareLines(*pBlockDiff1, *pBlockDiff2, chunk1, chunk2);
 
