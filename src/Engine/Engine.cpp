@@ -397,8 +397,12 @@ bool compareBlocks(const DocCmpInfo& doc1, const DocCmpInfo& doc2, const UserSet
 	getWords(view1, settings, chunk1);
 	getWords(view2, settings, chunk2);
 
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 3"), TEXT("Compare Plugin"), MB_OK);
+
 	// Compare the two chunks
 	const std::vector<diff_info> chunkDiff = DiffCalc<Word>(chunk1.words, chunk2.words)();
+
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 4"), TEXT("Compare Plugin"), MB_OK);
 
 	const int chunkDiffSize = static_cast<int>(chunkDiff.size());
 
@@ -472,6 +476,8 @@ bool compareBlocks(const DocCmpInfo& doc1, const DocCmpInfo& doc2, const UserSet
 			chunk2.lineMappings[line2] = line1;
 		}
 	}
+
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 5"), TEXT("Compare Plugin"), MB_OK);
 
 	compareLines(*pBlockDiff1, *pBlockDiff2, chunk1, chunk2);
 
