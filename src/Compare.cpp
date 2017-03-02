@@ -1535,6 +1535,8 @@ CompareResult compareViews(progress_ptr& progress, section_t mainViewSection, se
 	if (progress)
 		progress->SetMaxCount(blockDiffSize);
 
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 1"), TEXT("Compare Plugin"), MB_OK);
+
 	// Do block compares
 	for (int i = 0; i < blockDiffSize; ++i)
 	{
@@ -1559,6 +1561,8 @@ CompareResult compareViews(progress_ptr& progress, section_t mainViewSection, se
 		if (progress && !progress->Advance())
 			return CompareResult::COMPARE_CANCELLED;
 	}
+
+	::MessageBox(nppData._nppHandle, TEXT("Checkpoint 2"), TEXT("Compare Plugin"), MB_OK);
 
 	if (progress && !progress->NextPhase())
 		return CompareResult::COMPARE_CANCELLED;
